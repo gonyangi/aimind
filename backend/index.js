@@ -3,8 +3,13 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-// .env 파일의 환경 변수 로드
-dotenv.config();
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// .env 파일의 절대 경로를 계산하여 항상 올바르게 로드하도록 보강
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -39,10 +44,10 @@ app.post('/api/analyze', async (req, res) => {
       return res.status(400).json({ error: '일기 내용이 비어있습니다. 내용을 작성한 후 전송해주세요.' });
     }
 
-    // 제미나이 모델 생성 (gemini-2.0-flash 모델 적용)
+    // 제미나이 모델 생성 (gemini-1.5-flash 모델 적용)
     // systemInstruction을 통해 AI의 페르소나를 '따뜻하고 격려하는 초등 교사'로 제어합니다.
     const model = genAI.getGenerativeModel({
-      model: 'gemini-2.0-flash',
+      model: 'gemini-1.5-flash',
       systemInstruction: `너는 학생들의 속마음과 일상을 공감해주는 초등학교 선생님이야. 
 학생이 쓴 일기를 읽고, 해당 학생의 마음에 적극적으로 공감하고 격려와 응원의 답변을 해줘. 
 말투는 반말 대신 부드럽고 다정한 존댓말(해요체)을 사용해줘. 

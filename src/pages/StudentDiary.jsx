@@ -86,7 +86,9 @@ const StudentDiary = () => {
       });
 
       if (!response.ok) {
-        throw new Error('AI 응답을 생성하지 못했습니다.');
+        // 백엔드에서 에러 정보(JSON)를 읽어와 상세 내용을 출력하도록 설계합니다.
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.detail || errorData.error || 'AI 응답을 생성하지 못했습니다.');
       }
 
       const data = await response.json();
@@ -106,7 +108,7 @@ const StudentDiary = () => {
       setDiaryContent('');
     } catch (err) {
       console.error('일기 전송 중 오류 발생:', err);
-      setError('AI 선생님께 편지를 보내는 중 연결에 문제가 발생했어요. 백엔드 서버가 구동 중인지 확인해 주세요.');
+      setError(`오류 발생: ${err.message}`);
     } finally {
       setLoading(false);
     }
