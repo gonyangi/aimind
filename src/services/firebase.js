@@ -3,14 +3,14 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
-// 사용자가 제공한 Firebase 웹앱 설정값 적용
+// 사용자가 제공한 Firebase 웹앱 설정값 적용 (aimind-5f168 프로젝트용으로 업데이트)
 const firebaseConfig = {
-  apiKey: "AIzaSyCsZ8n0Lpe4j9CBOBKd2M0LY1EdQF4C-nQ",
-  authDomain: "aimind-2141a.firebaseapp.com",
-  projectId: "aimind-2141a",
-  storageBucket: "aimind-2141a.firebasestorage.app",
-  messagingSenderId: "1028316123016",
-  appId: "1:1028316123016:web:df7c5b68eebf0a1928f43d"
+  apiKey: "AIzaSyAF9y0x2FX2Pikniz434RumY9SMU2G9btI",
+  authDomain: "aimind-5f168.firebaseapp.com",
+  projectId: "aimind-5f168",
+  storageBucket: "aimind-5f168.firebasestorage.app",
+  messagingSenderId: "916681095385",
+  appId: "1:916681095385:web:5bbf9251866e70cea2a6c8"
 };
 
 // Firebase 초기화
